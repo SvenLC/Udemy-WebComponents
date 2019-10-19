@@ -7,23 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web Components</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         html {
             --color-primary: #a4fcda;
+            font-family: sans-serif;
         }
 
-        div {
-            border: 2px solid orange;
-        }
-
-        uc-tooltip {
-            border: 1px solid blue;
-            padding: 0.15rem;
-        }
-
-        .highlight {
-            /* background-color: #f7d28e; */
-            /* border-bottom: 2px solid blue; */
-        }
     </style>
     <script src="./tooltip.js"></script>
     <script src="./confirm-link.js"></script>
@@ -36,7 +27,7 @@
         </uc-tooltip> are awsome!
     </p>
     <uc-tooltip></uc-tooltip>
-    <div>This does not get the web component styles</div>
+
     <a is="uc-confirm-link" href="https://www.google.com">Google</a>
 </body>
 
