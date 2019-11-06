@@ -15,6 +15,13 @@ class Modal extends HTMLElement {
                     opacity: 0;
                     pointer-events: none;                    
                 }
+
+                :host([opened]) #backdrop,
+                :host([opened]) #modal {
+                    opacity: 1;
+                    pointer-events: all;
+
+                }
                 #modal {
                     position: fixed;
                     top: 15vh;
@@ -70,6 +77,21 @@ class Modal extends HTMLElement {
             </div>
         `;
     }
+
+    // attributeChangedCallback(name, oldValue, newValue) {
+    //     if (name=== 'opened') {
+    //         if (this.hasAttribute('opened')) {
+    //             this.shadowRoot.querySelector('#backdrop').style.opacity = 1;
+    //             this.shadowRoot.querySelector('#backdrop').style.opacity = 'all';
+    //             this.shadowRoot.querySelector('#modal').style.opacity = 1;
+    //             this.shadowRoot.querySelector('#modal').style.opacity = 'all';
+    //         }
+    //     }
+    // }
+
+    // static get observedAttributes() {
+    //     return ['opened'];
+    // }
 }
 
 customElements.define('uc-modal', Modal);
