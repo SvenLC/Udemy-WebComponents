@@ -11,19 +11,24 @@ export class SideDrawer {
     @Prop() open: boolean;
 
     render() {
-        let content = null;
-        if (this.open) {
-            content = (
-                <aside>
-                    <header><h1>{this.title}</h1></header>
-                    <main>
-                        <slot />
-                    </main>
-                </aside>
-            )
-        }
+        // let content = null;
+        // if (this.open) {
+        //     content = (
+        //         <aside>
+        //             <header><h1>{this.title}</h1></header>
+        //             <main>
+        //                 <slot />
+        //             </main>
+        //         </aside>
+        //     )
+        // }
         return (
-            content
+            <aside>
+                <header><h1>{this.title}</h1></header>
+                <main>
+                    <slot />
+                </main>
+            </aside>
         );
     }
 }
