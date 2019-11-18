@@ -1,4 +1,4 @@
-import { h, Component, Prop, State } from '@stencil/core';
+import { h, Component, Prop, State, Method } from '@stencil/core';
 
 
 @Component({
@@ -9,14 +9,19 @@ import { h, Component, Prop, State } from '@stencil/core';
 export class SideDrawer {
     @State() showContactInfo = false;
     @Prop({ reflect: true }) title: string;
-    @Prop({ reflect: true }) open: boolean;
+    @Prop({ reflect: true }) opened: boolean;
 
     onCloseDrawer() {
-        this.open = false;
+        this.opened = false;
     }
 
     onContentChange(content: string) {
         this.showContactInfo = content === 'contact';
+    }
+
+    @Method()
+    open() {
+        this.opened = true;
     }
 
     render() {
