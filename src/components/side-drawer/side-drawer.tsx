@@ -10,7 +10,7 @@ export class SideDrawer {
     @Prop({ reflect: true }) title: string;
     @Prop({ reflect: true }) open: boolean;
 
-    onCloseDrawer()  {
+    onCloseDrawer() {
         this.open = false;
     }
 
@@ -20,7 +20,11 @@ export class SideDrawer {
                 <header>
                     <h1>{this.title}</h1>
                     <button onClick={this.onCloseDrawer.bind(this)}>X</button>
-                    </header>
+                </header>
+                <section id="tabs">
+                    <button class="active">Navigation</button>
+                    <button>Contact</button>
+                </section>
                 <main>
                     <slot />
                 </main>
