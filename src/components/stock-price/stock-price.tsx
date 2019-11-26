@@ -52,7 +52,7 @@ export class StockPrice {
           value={this.stockUserInput}
           onInput={this.onUserInput.bind(this)}
         />
-        <button type="submit" disabled={this.stockInputValid}>
+        <button type="submit" disabled={!this.stockInputValid}>
           Fetch
         </button>
       </form>,
