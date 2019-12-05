@@ -15,6 +15,7 @@ export namespace Components {
     'opened': boolean;
     'title': string;
   }
+  interface UcSpinner {}
   interface UcStockFinder {}
   interface UcStockPrice {
     'stockSymbol': string;
@@ -30,6 +31,12 @@ declare global {
     new (): HTMLUcSideDrawerElement;
   };
 
+  interface HTMLUcSpinnerElement extends Components.UcSpinner, HTMLStencilElement {}
+  var HTMLUcSpinnerElement: {
+    prototype: HTMLUcSpinnerElement;
+    new (): HTMLUcSpinnerElement;
+  };
+
   interface HTMLUcStockFinderElement extends Components.UcStockFinder, HTMLStencilElement {}
   var HTMLUcStockFinderElement: {
     prototype: HTMLUcStockFinderElement;
@@ -43,6 +50,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'uc-side-drawer': HTMLUcSideDrawerElement;
+    'uc-spinner': HTMLUcSpinnerElement;
     'uc-stock-finder': HTMLUcStockFinderElement;
     'uc-stock-price': HTMLUcStockPriceElement;
   }
@@ -53,6 +61,7 @@ declare namespace LocalJSX {
     'opened'?: boolean;
     'title'?: string;
   }
+  interface UcSpinner {}
   interface UcStockFinder {
     'onUcSymbolSelected'?: (event: CustomEvent<string>) => void;
   }
@@ -62,6 +71,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'uc-side-drawer': UcSideDrawer;
+    'uc-spinner': UcSpinner;
     'uc-stock-finder': UcStockFinder;
     'uc-stock-price': UcStockPrice;
   }
@@ -74,6 +84,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'uc-side-drawer': LocalJSX.UcSideDrawer & JSXBase.HTMLAttributes<HTMLUcSideDrawerElement>;
+      'uc-spinner': LocalJSX.UcSpinner & JSXBase.HTMLAttributes<HTMLUcSpinnerElement>;
       'uc-stock-finder': LocalJSX.UcStockFinder & JSXBase.HTMLAttributes<HTMLUcStockFinderElement>;
       'uc-stock-price': LocalJSX.UcStockPrice & JSXBase.HTMLAttributes<HTMLUcStockPriceElement>;
     }

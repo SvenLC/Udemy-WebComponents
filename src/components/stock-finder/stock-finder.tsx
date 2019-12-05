@@ -11,12 +11,14 @@ export class StockFinder {
   stockNameInput: HTMLInputElement;
 
   @State() searchResults: { symbol: string; name: string }[] = [];
+  @State() loading = false;
 
   @Event({ bubbles: true, composed: true }) ucSymbolSelected: EventEmitter<
     string
   >;
 
   onFindStocks(event) {
+    this.loading = true;
     event.preventDefault();
     const stockName = this.stockNameInput.value;
     fetch(
@@ -27,10 +29,13 @@ export class StockFinder {
         this.searchResults = parsedRes["bestMatches"].map(match => {
           return { name: match["2. name"], symbol: match["1. symbol"] };
         });
+
         console.log(parsedRes);
+        this.loading = false;
       })
       .catch(err => {
         console.log(err);
+        this.loading = false;
       });
   }
 
@@ -39,11 +44,7 @@ export class StockFinder {
   }
 
   render() {
-    return [
-      <form onSubmit={this.onFindStocks.bind(this)}>
-        <input id="stock-symbol" ref={el => (this.stockNameInput = el)} />
-        <button type="submit">Find!</button>
-      </form>,
+    let content = (
       <ul>
         {this.searchResults.map(result => (
           <li onClick={this.onSelectSymbol.bind(this, result.symbol)}>
@@ -51,6 +52,16 @@ export class StockFinder {
           </li>
         ))}
       </ul>
+    );
+    if (this.loading) {
+      content = <uc-spinner></uc-spinner>;
+    }
+    return [
+      <form onSubmit={this.onFindStocks.bind(this)}>
+        <input id="stock-symbol" ref={el => (this.stockNameInput = el)} />
+        <button type="submit">Find!</button>
+      </form>,
+      content
     ];
   }
 }
