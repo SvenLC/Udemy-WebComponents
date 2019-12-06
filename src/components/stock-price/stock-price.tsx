@@ -54,11 +54,6 @@ export class StockPrice {
     // this.fetchStockPrice(stockSymbol);
   }
 
-  componentWillLoad() {
-    console.log("componentWillLoad");
-    console.log(this.stockSymbol);
-  }
-
   componentDidLoad() {
     if (this.stockSymbol) {
       // this.initialStockSymbol = this.stockSymbol;
@@ -68,25 +63,8 @@ export class StockPrice {
     }
   }
 
-  componentWillUpdate() {
-    console.log("componentWillUpdate");
-  }
-
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-    // if (this.stockSymbol !== this.initialStockSymbol) {
-    //   this.initialStockSymbol = this.stockSymbol;
-    //   this.fetchStockPrice(this.stockSymbol);
-    // }
-  }
-
-  componentDidUnload() {
-    console.log("componentDidUnload");
-  }
-
-  @Listen("body:ucSymbolSelected")
+  @Listen("ucSymbolSelected", { target: "body" })
   onStockSymbolSelected(event: CustomEvent) {
-    console.log("stock symbol selected: " + event.detail);
     if (event.detail && event.detail !== this.stockSymbol) {
       this.stockSymbol = event.detail;
     }
@@ -131,14 +109,7 @@ export class StockPrice {
       dataContent = <p>Price: ${this.fetchedPrice} </p>;
     }
     if (this.loading) {
-      dataContent = (
-        <div class="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      );
+      dataContent = <uc-spinner></uc-spinner>;
     }
     return [
       <form onSubmit={this.onFetchStockPrice.bind(this)}>
